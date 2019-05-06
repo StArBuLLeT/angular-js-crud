@@ -1,3 +1,14 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">ANGULAR JS</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#!/">Home</a></li>
+        <li><a href="#!/map">MAP</a></li>
+      </ul>
+    </div>
+</nav>
 <div class="container">
     <h1>Employee List</h1>
     <br>
@@ -20,11 +31,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="employee in employees | filter:search">
+            <tr ng-repeat="employee in employees | filter:search | orderBy: '-id'">
                 <td>{{ employee.lastName }}</td>
                 <td>{{ employee.firstName }}</td>
                 <td>{{ employee.email }}</td>
-                <td><button class="btn btn-warning" data-toggle="modal" data-target="#edit-employee-modal" ng-click="selectEmployee(employee)"><span class="glyphicon glyphicon-pencil"></span></button> <button class="btn btn-danger" data-toggle="modal" data-target="#delete-employee-modal" ng-click="selectEmployee(employee)"><span class="glyphicon glyphicon-trash"></span></button></td>
+                <td><button class="btn btn-info" data-toggle="modal" data-target="#view-employee-modal" ng-click="selectEmployee(employee)"><span class="glyphicon glyphicon-eye-open"></span></button> <button class="btn btn-warning" data-toggle="modal" data-target="#edit-employee-modal" ng-click="selectEmployee(employee)"><span class="glyphicon glyphicon-pencil"></span></button> <button class="btn btn-danger" data-toggle="modal" data-target="#delete-employee-modal" ng-click="selectEmployee(employee)"><span class="glyphicon glyphicon-trash"></span></button></td>
             </tr>
         </tbody>
     </table>
@@ -110,6 +121,48 @@
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="deleteEmployee(selectedEmployee)">Delete</button>
+    </div>
+    </div>
+
+    </div>
+</div>
+
+<div id="view-employee-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+    
+    <div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">VIEW EMPLOYEE</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-3">
+                <label>LAST NAME:</label>
+            </div>
+            <div class="col-md-3">
+                <p ng-bind="selectedEmployee.lastName"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label>FIRST NAME:</label>
+            </div>
+            <div class="col-md-3">
+                <p ng-bind="selectedEmployee.firstName"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <label>EMAIL:</label>
+            </div>
+            <div class="col-md-3">
+                <p ng-bind="selectedEmployee.email"></p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>
     </div>
 

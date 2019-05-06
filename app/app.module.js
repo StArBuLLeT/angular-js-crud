@@ -1,5 +1,7 @@
 'use strict';
 
 angular.module('angularCrudApp', [
-    'employeeList'
+    'employeeList',
+    'map',
+    'ngRoute'
 ]);
