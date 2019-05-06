@@ -1,0 +1,117 @@
+<div class="container">
+    <h1>Employee List</h1>
+    <br>
+    <div class="row">
+        <div class="col-md-6">
+            <input type="text" ng-model="search" class="form-control" placeholder="search">
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-info pull-right" data-toggle="modal" data-target="#add-employee-modal">Add Employee</button>
+        </div>
+    </div>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>LAST NAME</th>
+                <th>FIRST NAME</th>
+                <th>EMAIL</th>
+                <th>ACTION</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="employee in employees | filter:search">
+                <td>{{ employee.lastName }}</td>
+                <td>{{ employee.firstName }}</td>
+                <td>{{ employee.email }}</td>
+                <td><button class="btn btn-warning" data-toggle="modal" data-target="#edit-employee-modal" ng-click="selectEmployee(employee)"><span class="glyphicon glyphicon-pencil"></span></button> <button class="btn btn-danger" data-toggle="modal" data-target="#delete-employee-modal" ng-click="selectEmployee(employee)"><span class="glyphicon glyphicon-trash"></span></button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="add-employee-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+    <div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">ADD EMPLOYEE</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label>LAST NAME:</label>
+            <input type="text" class="form-control" ng-model="newEmployee.lastName">
+        </div>
+
+        <div class="form-group">
+            <label>FIRST NAME:</label>
+            <input type="text" class="form-control" ng-model="newEmployee.firstName">
+        </div>
+
+        <div class="form-group">
+            <label>EMAIL:</label>
+            <input type="text" class="form-control" ng-model="newEmployee.email">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="addEmployee()">Submit</button>
+    </div>
+    </div>
+
+    </div>
+</div>
+
+<div id="edit-employee-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+    
+    <div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">UPDATE EMPLOYEE</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label>LAST NAME:</label>
+            <input type="text" class="form-control" ng-model="selectedEmployeeUpdate.lastName">
+        </div>
+
+        <div class="form-group">
+            <label>FIRST NAME:</label>
+            <input type="text" class="form-control" ng-model="selectedEmployeeUpdate.firstName">
+        </div>
+
+        <div class="form-group">
+            <label>EMAIL:</label>
+            <input type="text" class="form-control" ng-model="selectedEmployeeUpdate.email">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="updateEmployee(selectedEmployeeUpdate)">Update</button>
+    </div>
+    </div>
+
+    </div>
+</div>
+
+<div id="delete-employee-modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+    
+    <div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">DELETE EMPLOYEE</h4>
+    </div>
+    <div class="modal-body">
+        <p>Are you sure you want to delete this employee?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="deleteEmployee(selectedEmployee)">Delete</button>
+    </div>
+    </div>
+
+    </div>
+</div>
